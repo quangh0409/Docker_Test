@@ -1,4 +1,4 @@
-import { Result, success } from "app";
+import { Result, created, ok } from "../ca.main";
 import Project from "../models/project";
 import { v1 } from "uuid";
 
@@ -18,10 +18,10 @@ export async function createProject(params: {
 
     await project.save();
 
-    return success.created(project);
+    return created(project);
 }
 
 export async function getAllProject(): Promise<Result> {
     const projects = await Project.find({}, { _id: 0 }).lean();
-    return success.ok(projects);
+    return ok(projects);
 }

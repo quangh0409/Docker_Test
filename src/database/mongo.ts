@@ -1,4 +1,3 @@
-import logger from "logger";
 import mongoose, { ConnectOptions } from "mongoose";
 import { configs } from "../configs";
 
@@ -11,11 +10,11 @@ export function connectMongo(onSuccess: () => void): void {
             useUnifiedTopology: true,
         } as ConnectOptions)
         .then(() => {
-            logger.info("Connected to mongo");
+            console.info("Connected to mongo");
             onSuccess();
         })
         .catch((err) => {
-            logger.error("%O", err);
+            console.error("%O", err);
         });
 }
 

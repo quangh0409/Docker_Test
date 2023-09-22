@@ -1,9 +1,10 @@
-import { ResultSuccess, success } from "app";
+
 import Project from "../models/project";
 import Teacher from "../models/teacher";
 import { IAssignment } from "../interfaces/models/assignment";
 import { SPECIALIZE } from "../enum/specialize";
 import { IArray_Assignment } from "../interfaces/response/assignment.body";
+import { ResultSuccess, ok } from "../ca.main";
 
 export async function getArraySuitableClothes(): Promise<ResultSuccess> {
     const array: number[][] = [];
@@ -73,7 +74,7 @@ export async function getArraySuitableClothes(): Promise<ResultSuccess> {
                     maxCompatibility = compatibility;
                     temp = idx;
                 }
-                return success.ok(array);
+                return ok(array);
             }
         });
 
@@ -125,12 +126,11 @@ export async function getArraySuitableClothes(): Promise<ResultSuccess> {
     });
 
     array.push(sum);
-
     const result: IArray_Assignment = {
         array: array,
         assignment: assignments,
     };
-    return success.ok(result);
+    return ok(result);
 }
 
 // thiết lập array project - specialize
@@ -150,7 +150,7 @@ export async function getArraySpecializeProject(): Promise<ResultSuccess> {
         array.push(row);
     });
 
-    return success.ok(array);
+    return ok(array);
 }
 
 // thiết lập array teacher - specialize
@@ -171,7 +171,7 @@ export async function getArraySpecializeTeacher(): Promise<ResultSuccess> {
         array.push(row);
     });
 
-    return success.ok(array);
+    return ok(array);
 }
 
 // thiet lap array teacher - project
@@ -199,5 +199,5 @@ export async function getArrayTeacherProject(): Promise<ResultSuccess> {
         array.push(element);
     }
 
-    return success.ok(array);
+    return ok(array);
 }

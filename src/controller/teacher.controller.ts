@@ -1,4 +1,4 @@
-import { Result, success } from "app";
+import { Result, ok } from "../ca.main";
 import Teacher from "../models/teacher";
 import { v1 } from "uuid";
 
@@ -24,10 +24,10 @@ export async function createTeacher(params: {
 
     await teacher.save();
 
-    return success.ok(teacher);
+    return ok(teacher);
 }
 
 export async function getAllTeacher(): Promise<Result> {
     const teachers = await Teacher.find({}, { _id: 0 }).lean();
-    return success.ok(teachers);
+    return ok(teachers);
 }
